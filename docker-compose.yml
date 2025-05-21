@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: docker.io/timescale/timescaledb-ha:pg17-all
+    image: docker.io/tensorchord/vchord-postgres:pg17-v0.3.0
     container_name: postgres_with_pgvectorscale # Updated container name
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
@@ -12,10 +12,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-vectordb}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    command: >
-      postgres
-      -c shared_preload_libraries='timescaledb,pg_stat_statements'
-      -c timescaledb.license='timescale'
 
 volumes:
   postgres_data:
